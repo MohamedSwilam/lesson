@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LessonModule } from './modules/lesson/lesson.module';
 import { LessonSchedule } from './modules/lesson/entities/lesson-schedule.entity';
 import { LessonRecurrencePlan } from './modules/lesson/entities/lesson-recurrence-plan.entity';
 import { LessonException } from './modules/lesson/entities/lesson-exception.entity';
 import { LessonCancelled } from './modules/lesson/entities/lesson-cancelled.entity';
+import { AuthMiddleware } from './middlewares/auth.middleware';
 
 const config = require('../config');
 
@@ -28,4 +29,8 @@ const config = require('../config');
     LessonModule,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).forRoutes('*');
+  }
+}

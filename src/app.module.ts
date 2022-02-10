@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LessonModule } from './modules/lesson/lesson.module';
+import { LessonSchedule } from './modules/lesson/entities/lesson-schedule.entity';
 
 const config = require('../config');
 
@@ -12,11 +14,10 @@ const config = require('../config');
       username: config.db.username,
       password: config.db.password,
       database: config.db.name,
-      entities: [],
+      entities: [LessonSchedule],
       synchronize: true,
     }),
+    LessonModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

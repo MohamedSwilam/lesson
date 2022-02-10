@@ -4,9 +4,12 @@ import {
   Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { LessonRecurrencePlan } from '../../entities/lesson-recurrence-plan.entity';
-import { CreateLessonRecurrencePlanDto } from '../../definitions/lesson-schedule.dto';
+import {
+  CreateLessonRecurrencePlanDto,
+  UpdateLessonRecurrencePlanDto,
+} from '../../definitions/lesson-recurrence-plan.dto';
 
 @Injectable()
 export class LessonRecurrencePlanService {
@@ -34,6 +37,32 @@ export class LessonRecurrencePlanService {
     } catch (error) {
       this.logger.error(
         'Unexpected error occurred in saving new lesson recurrence plan',
+        error,
+      );
+
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  /**
+   * Update lesson recurrence plan in the database
+   *
+   * @return UpdateResult
+   * @param id
+   * @param updateLessonRecurrencePlanDto
+   */
+  async update(
+    id: number,
+    updateLessonRecurrencePlanDto: UpdateLessonRecurrencePlanDto,
+  ): Promise<UpdateResult> {
+    try {
+      return await this.lessonRecurrencePlanRepository.update(
+        { id },
+        updateLessonRecurrencePlanDto,
+      );
+    } catch (error) {
+      this.logger.error(
+        'Unexpected error occurred in updating lesson recurrence plan',
         error,
       );
 

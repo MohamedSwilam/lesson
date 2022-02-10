@@ -6,6 +6,7 @@ import { LessonSchedule } from './entities/lesson-schedule.entity';
 import { LessonRecurrencePlan } from './entities/lesson-recurrence-plan.entity';
 import { LessonException } from './entities/lesson-exception.entity';
 import { LessonCancelled } from './entities/lesson-cancelled.entity';
+import { LessonRecurrencePlanService } from './services/lesson-recurrence-plan/lesson-recurrence-plan.service';
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { LessonCancelled } from './entities/lesson-cancelled.entity';
     ]),
   ],
   controllers: [LessonScheduleController],
-  providers: [LessonScheduleService],
+  providers: [LessonScheduleService, LessonRecurrencePlanService],
 })
 export class LessonModule {}

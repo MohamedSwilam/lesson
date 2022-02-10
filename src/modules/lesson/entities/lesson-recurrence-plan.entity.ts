@@ -12,12 +12,12 @@ export class LessonRecurrencePlan extends BaseEntity {
   })
   id: number;
 
-  @Column({ type: 'boolean', default: true })
+  @Column({ type: 'boolean', default: true, name: 'is_daily' })
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence plan daily or weekly',
   })
-  is_daily: boolean;
+  isDaily: boolean;
 
   @Column({ type: 'boolean', default: false })
   @ApiProperty({
@@ -78,10 +78,7 @@ export class LessonRecurrencePlan extends BaseEntity {
   @OneToMany(
     () => LessonSchedule,
     (lessonSchedule) => lessonSchedule.lessonRecurrencePlanId,
-    {
-      cascade: ['insert', 'update'],
-      onDelete: 'CASCADE',
-    },
+    { onDelete: 'CASCADE' },
   )
   lessonSchedule: LessonSchedule[];
 }

@@ -2,97 +2,14 @@ import {
   IsNotEmpty,
   IsOptional,
   Length,
-  IsBoolean,
   ValidateNested,
-  IsDate, IsPositive,
+  IsPositive, Validate,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-
-export class CreateLessonRecurrencePlanDto {
-  @IsNotEmpty()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence plan type daily or weekly',
-    required: true,
-  })
-  isDaily: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on saturday',
-    required: true,
-  })
-  saturday: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on sunday',
-    required: true,
-  })
-  sunday: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on monday',
-    required: true,
-  })
-  monday: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on tuesday',
-    required: true,
-  })
-  tuesday: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on wednesday',
-    required: true,
-  })
-  wednesday: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on thursday',
-    required: true,
-  })
-  thursday: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  @ApiProperty({
-    example: true,
-    description: 'Lesson recurrence weekly on friday',
-    required: true,
-  })
-  friday: boolean;
-
-  @IsNotEmpty()
-  @IsDate()
-  @Type(() => Date)
-  @ApiProperty({
-    example: '2022-4-09',
-    description: 'Lesson recurrence end date',
-    required: true,
-  })
-  endDate: Date;
-}
+import { CreateLessonRecurrencePlanDto } from './lesson-recurrence-plan.dto';
+import {IsExist} from "@youba/nestjs-dbvalidator";
 
 export class CreateLessonScheduleDto {
   @IsNotEmpty()
@@ -120,6 +37,7 @@ export class CreateLessonScheduleDto {
     description: 'Lesson recurrence plan ID',
     required: true,
   })
+  @Validate(IsExist, [{ table: 'lesson_recurrence_plan', column: 'id' }])
   lessonRecurrencePlanId: number;
 
   @IsOptional()

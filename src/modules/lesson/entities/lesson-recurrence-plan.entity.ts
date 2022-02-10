@@ -68,17 +68,18 @@ export class LessonRecurrencePlan extends BaseEntity {
   })
   friday: boolean;
 
-  @Column({ type: 'date', nullable: false })
+  @Column({ type: 'date', nullable: false, name: 'end_date' })
   @ApiProperty({
     example: '2022-03-10',
     description: 'Recurrence end date',
   })
-  end_date: Date;
+  endDate: Date;
 
   @OneToMany(
     () => LessonSchedule,
     (lessonSchedule) => lessonSchedule.lessonRecurrencePlanId,
     {
+      cascade: ['insert', 'update'],
       onDelete: 'CASCADE',
     },
   )

@@ -28,6 +28,11 @@
 
 ## Installation
 
+#### 1. Create .env file as a copy from .env.example and set environment variables
+```bash
+$ copy .env.example .env
+```
+#### 2. Install node modules
 ```bash
 $ npm install
 ```
@@ -57,6 +62,8 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+## Swagger API Documentation
+###[http://127.0.0.1:3000/api](http://127.0.0.1:3000/api)
 
 ## Support
 
@@ -64,9 +71,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Mohamed Swilam](https://github.com/MohamedSwilam)
+- LinkedIn - [https://www.linkedin.com/in/mohamedswilam](https://www.linkedin.com/in/mohamedswilam)
 
 ## License
 

@@ -25,7 +25,7 @@ async function bootstrap() {
     .setVersion(config.app.version)
     .addTag('CoLearn')
     .addBearerAuth()
-    .addServer(`localhost:${config.app.port}`)
+    .addServer(`http://localhost:${config.app.port}`)
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

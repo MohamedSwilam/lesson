@@ -11,6 +11,7 @@ import {
   UpdateLessonScheduleDto,
 } from '../../definitions/lesson-schedule.dto';
 import { LessonRecurrencePlanService } from '../lesson-recurrence-plan/lesson-recurrence-plan.service';
+import { LessonFetchEngineService } from '../lesson-fetch-engine/lesson-fetch-engine.service';
 
 @Injectable()
 export class LessonScheduleService {
@@ -20,7 +21,17 @@ export class LessonScheduleService {
     @InjectRepository(LessonSchedule)
     private lessonScheduleRepository: Repository<LessonSchedule>,
     private readonly lessonRecurrencePlanService: LessonRecurrencePlanService,
+    private readonly lessonFetchEngineService: LessonFetchEngineService,
   ) {}
+
+  async view(id: number) {
+    const scheduledLessons = await this.lessonScheduleRepository.findOneOrFail({
+      where: { id: id },
+      relations: ['lessonRecurrencePlan', 'lessonException', 'lessonCancelled'],
+    });
+
+    return this.lessonFetchEngineService.format(scheduledLessons);
+  }
 
   /**
    * Save new lesson schedule in the database

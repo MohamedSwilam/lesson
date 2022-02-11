@@ -9,6 +9,9 @@ import { LessonCancelled } from './entities/lesson-cancelled.entity';
 import { LessonRecurrencePlanService } from './services/lesson-recurrence-plan/lesson-recurrence-plan.service';
 import { LessonCancelledController } from './controllers/lesson-cancelled/lesson-cancelled.controller';
 import { LessonCancelledService } from './services/lesson-cancelled/lesson-cancelled.service';
+import { LessonExceptionsController } from './controllers/lesson-exception/lesson-exceptions.controller';
+import { LessonExceptionService } from './services/lesson-exception/lesson-exception.service';
+import { LessonFetchEngineService } from './services/lesson-fetch-engine/lesson-fetch-engine.service';
 
 @Module({
   imports: [
@@ -19,11 +22,17 @@ import { LessonCancelledService } from './services/lesson-cancelled/lesson-cance
       LessonCancelled,
     ]),
   ],
-  controllers: [LessonScheduleController, LessonCancelledController],
+  controllers: [
+    LessonScheduleController,
+    LessonCancelledController,
+    LessonExceptionsController,
+  ],
   providers: [
     LessonScheduleService,
     LessonRecurrencePlanService,
     LessonCancelledService,
+    LessonExceptionService,
+    LessonFetchEngineService,
   ],
 })
 export class LessonModule {}

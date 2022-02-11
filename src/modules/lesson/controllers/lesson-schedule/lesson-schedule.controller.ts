@@ -6,6 +6,7 @@ import {
   Body,
   Put,
   Param,
+  Get,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { LessonScheduleService } from '../../services/lesson-schedule/lesson-schedule.service';
@@ -14,18 +15,39 @@ import {
   UpdateLessonScheduleDto,
 } from '../../definitions/lesson-schedule.dto';
 import { CrudResponse } from '../../../../responses/crud.response';
-import { LessonSchedule } from '../../entities/lesson-schedule.entity';
 
 @ApiTags('lesson-schedules')
 @Controller('lesson-schedules')
 export class LessonScheduleController {
   constructor(private readonly lessonScheduleService: LessonScheduleService) {}
 
+  @Get('/:id')
+  @ApiOperation({
+    summary: 'Browse lesson schedules',
+    description:
+      'API to fetch all lessons of a specific schedule ordered by date ascending',
+  })
+  @ApiResponse({
+    status: 200,
+    type: CrudResponse,
+  })
+  @UsePipes(ValidationPipe)
+  async browseLessonSchedule(
+    @Param('id') id: string,
+  ): Promise<Record<string, any>> {
+    return new CrudResponse().browseResponse([
+      await this.lessonScheduleService.view(+id),
+    ]);
+  }
   @Post()
-  @ApiOperation({ summary: 'Create lesson schedule' })
+  @ApiOperation({
+    summary: 'Create lesson schedule',
+    description:
+      'API to save lessons by saving only lesson info & the recurrence plan',
+  })
   @ApiResponse({
     status: 201,
-    type: String,
+    type: CrudResponse,
   })
   @UsePipes(ValidationPipe)
   async createLessonSchedule(
@@ -40,10 +62,13 @@ export class LessonScheduleController {
   }
 
   @Put('/:id')
-  @ApiOperation({ summary: 'Update lesson schedule' })
+  @ApiOperation({
+    summary: 'Update lesson schedule',
+    description: 'API to update lesson and recurrence plan',
+  })
   @ApiResponse({
     status: 200,
-    type: LessonSchedule,
+    type: CrudResponse,
   })
   @UsePipes(ValidationPipe)
   async updateLessonSchedule(

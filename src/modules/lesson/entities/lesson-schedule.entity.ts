@@ -37,6 +37,14 @@ export class LessonSchedule extends BaseEntity {
   })
   description: string;
 
+  @Column({ type: 'date', nullable: false })
+  @ApiProperty({
+    example: '2022-4-09',
+    description: 'Lesson scheduled date',
+    required: true,
+  })
+  date: Date;
+
   @Column({ type: 'int', nullable: true, name: 'lesson_recurrence_plan_id' })
   @ApiProperty({
     example: 1,
@@ -58,16 +66,17 @@ export class LessonSchedule extends BaseEntity {
 
   @OneToMany(
     () => LessonException,
-    (lessonException) => lessonException.lessonScheduleId,
+    (lessonException) => lessonException.lessonSchedule,
     {
       onDelete: 'CASCADE',
     },
   )
+  @JoinColumn()
   lessonException: LessonException[];
 
   @OneToMany(
     () => LessonCancelled,
-    (lessonCancelled) => lessonCancelled.lessonScheduleId,
+    (lessonCancelled) => lessonCancelled.lessonSchedule,
     {
       onDelete: 'CASCADE',
     },

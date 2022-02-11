@@ -18,7 +18,11 @@ export class LessonCancelledController {
   ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create lesson cancellation' })
+  @ApiOperation({
+    summary: 'Create lesson cancellation',
+    description:
+      'API to cancel a specific lesson by date or cancel all lessons from a specific date',
+  })
   @ApiResponse({
     status: 201,
     type: String,

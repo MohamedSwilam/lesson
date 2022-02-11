@@ -21,7 +21,7 @@ export class LessonException extends BaseEntity {
   @Column({ type: 'date', nullable: false, name: 'scheduled_date' })
   @ApiProperty({
     example: '2022-4-09',
-    description: 'Scheduled date',
+    description: 'Lesson scheduled date',
   })
   scheduledDate: Date;
 

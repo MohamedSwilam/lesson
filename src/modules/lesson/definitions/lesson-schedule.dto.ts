@@ -3,13 +3,15 @@ import {
   IsOptional,
   Length,
   ValidateNested,
-  IsPositive, Validate,
+  IsPositive,
+  Validate,
+  IsDate,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { CreateLessonRecurrencePlanDto } from './lesson-recurrence-plan.dto';
-import {IsExist} from "@youba/nestjs-dbvalidator";
+import { IsExist } from '@youba/nestjs-dbvalidator';
 
 export class CreateLessonScheduleDto {
   @IsNotEmpty()
@@ -30,15 +32,25 @@ export class CreateLessonScheduleDto {
   })
   description: string;
 
+  @IsNotEmpty()
+  @IsDate()
+  @Type(() => Date)
+  @ApiProperty({
+    example: '2022-4-09',
+    description: 'Lesson schedule date',
+    required: true,
+  })
+  date: Date;
+
   @IsOptional()
   @IsPositive()
   @ApiProperty({
     example: 1,
     description: 'Lesson recurrence plan ID',
-    required: true,
+    required: false,
   })
   @Validate(IsExist, [{ table: 'lesson_recurrence_plan', column: 'id' }])
-  lessonRecurrencePlanId: number;
+  lessonRecurrencePlanId?: number;
 
   @IsOptional()
   @ValidateNested()

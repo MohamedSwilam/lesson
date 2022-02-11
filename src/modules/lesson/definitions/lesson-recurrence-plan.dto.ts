@@ -18,63 +18,63 @@ export class CreateLessonRecurrencePlanDto {
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on saturday',
-    required: true,
+    required: false,
   })
-  saturday: boolean;
+  saturday?: boolean;
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on sunday',
-    required: true,
+    required: false,
   })
-  sunday: boolean;
+  sunday?: boolean;
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on monday',
-    required: true,
+    required: false,
   })
-  monday: boolean;
+  monday?: boolean;
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on tuesday',
-    required: true,
+    required: false,
   })
-  tuesday: boolean;
+  tuesday?: boolean;
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on wednesday',
-    required: true,
+    required: false,
   })
-  wednesday: boolean;
+  wednesday?: boolean;
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on thursday',
-    required: true,
+    required: false,
   })
-  thursday: boolean;
+  thursday?: boolean;
 
   @IsOptional()
   @IsBoolean()
   @ApiProperty({
     example: true,
     description: 'Lesson recurrence weekly on friday',
-    required: true,
+    required: false,
   })
-  friday: boolean;
+  friday?: boolean;
 
   @IsNotEmpty()
   @IsDate()

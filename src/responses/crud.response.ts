@@ -4,7 +4,7 @@ export class CrudResponse {
    * @param data
    * @param message
    */
-  browseResponse(data: [], message = 'Fetched Successfully') {
+  browseResponse(data: any, message = 'Fetched Successfully') {
     return { message, data };
   }
 

@@ -1,15 +1,16 @@
 import {
-  IsBoolean,
   IsDate,
   IsNotEmpty,
   IsOptional,
+  IsString,
+  Length,
   Validate,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsExist } from '@youba/nestjs-dbvalidator';
 
-export class CreateLessonCancelledDto {
+export class CreateLessonExceptionDto {
   @IsNotEmpty()
   @Validate(IsExist, [{ table: 'lesson_schedule', column: 'id' }])
   @ApiProperty({
@@ -27,14 +28,35 @@ export class CreateLessonCancelledDto {
     description: 'Lesson scheduled date',
     required: true,
   })
-  lessonScheduledDate: Date;
+  scheduledDate: Date;
 
   @IsOptional()
-  @IsBoolean()
+  @IsDate()
+  @Type(() => Date)
   @ApiProperty({
-    example: true,
-    description: 'Cancel all lessons after the specified lesson scheduled date',
+    example: '2022-4-09',
+    description: 'Lesson new date',
     required: false,
   })
-  cancelAfter?: boolean;
+  newDate?: Date;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    example: 'New Title',
+    description: 'Lesson new title',
+    required: false,
+  })
+  @Length(3, 255)
+  newTitle?: string;
+
+  @IsOptional()
+  @IsString()
+  @Length(3, 255)
+  @ApiProperty({
+    example: 'New Description',
+    description: 'Lesson new description',
+    required: false,
+  })
+  newDescription?: string;
 }

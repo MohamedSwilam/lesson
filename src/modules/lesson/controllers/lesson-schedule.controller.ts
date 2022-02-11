@@ -9,12 +9,12 @@ import {
   Get,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { LessonScheduleService } from '../../services/lesson-schedule/lesson-schedule.service';
+import { LessonScheduleService } from '../services/lesson-schedule.service';
 import {
   CreateLessonScheduleDto,
   UpdateLessonScheduleDto,
-} from '../../definitions/lesson-schedule.dto';
-import { CrudResponse } from '../../../../responses/crud.response';
+} from '../definitions/lesson-schedule.dto';
+import { CrudResponse } from '../../../responses/crud.response';
 
 @ApiTags('lesson-schedules')
 @Controller('lesson-schedules')

@@ -4,14 +4,14 @@ import {
   Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { LessonSchedule } from '../../entities/lesson-schedule.entity';
+import { LessonSchedule } from '../entities/lesson-schedule.entity';
 import { Repository, UpdateResult } from 'typeorm';
 import {
   CreateLessonScheduleDto,
   UpdateLessonScheduleDto,
-} from '../../definitions/lesson-schedule.dto';
-import { LessonRecurrencePlanService } from '../lesson-recurrence-plan/lesson-recurrence-plan.service';
-import { LessonFetchEngineService } from '../lesson-fetch-engine/lesson-fetch-engine.service';
+} from '../definitions/lesson-schedule.dto';
+import { LessonRecurrencePlanService } from './lesson-recurrence-plan.service';
+import { LessonFetchEngineService } from './lesson-fetch-engine.service';
 
 @Injectable()
 export class LessonScheduleService {

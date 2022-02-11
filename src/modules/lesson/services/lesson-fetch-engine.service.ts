@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { LessonSchedule } from '../../entities/lesson-schedule.entity';
-import { LessonCancelled } from '../../entities/lesson-cancelled.entity';
-import { LessonException } from '../../entities/lesson-exception.entity';
+import { LessonSchedule } from '../entities/lesson-schedule.entity';
+import { LessonCancelled } from '../entities/lesson-cancelled.entity';
+import { LessonException } from '../entities/lesson-exception.entity';
 
 @Injectable()
 export class LessonFetchEngineService {

@@ -6,9 +6,9 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CrudResponse } from '../../../../responses/crud.response';
-import { CreateLessonCancelledDto } from '../../definitions/lesson-cancelled.dto';
-import { LessonCancelledService } from '../../services/lesson-cancelled/lesson-cancelled.service';
+import { CrudResponse } from '../../../responses/crud.response';
+import { CreateLessonCancelledDto } from '../definitions/lesson-cancelled.dto';
+import { LessonCancelledService } from '../services/lesson-cancelled.service';
 
 @ApiTags('lesson-cancels')
 @Controller('lesson-cancels')

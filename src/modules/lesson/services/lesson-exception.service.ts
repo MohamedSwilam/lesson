@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LessonException } from '../../entities/lesson-exception.entity';
-import { CreateLessonExceptionDto } from '../../definitions/lesson-exception.dto';
+import { LessonException } from '../entities/lesson-exception.entity';
+import { CreateLessonExceptionDto } from '../definitions/lesson-exception.dto';
 
 @Injectable()
 export class LessonExceptionService {

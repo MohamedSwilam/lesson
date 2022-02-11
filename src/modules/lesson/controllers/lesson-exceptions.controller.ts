@@ -6,9 +6,9 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CrudResponse } from '../../../../responses/crud.response';
-import { LessonExceptionService } from '../../services/lesson-exception/lesson-exception.service';
-import { CreateLessonExceptionDto } from '../../definitions/lesson-exception.dto';
+import { CrudResponse } from '../../../responses/crud.response';
+import { LessonExceptionService } from '../services/lesson-exception.service';
+import { CreateLessonExceptionDto } from '../definitions/lesson-exception.dto';
 
 @ApiTags('lesson-exceptions')
 @Controller('lesson-exceptions')

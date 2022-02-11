@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LessonCancelled } from '../../entities/lesson-cancelled.entity';
-import { CreateLessonCancelledDto } from '../../definitions/lesson-cancelled.dto';
+import { LessonCancelled } from '../entities/lesson-cancelled.entity';
+import { CreateLessonCancelledDto } from '../definitions/lesson-cancelled.dto';
 
 @Injectable()
 export class LessonCancelledService {

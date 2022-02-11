@@ -5,11 +5,11 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
-import { LessonRecurrencePlan } from '../../entities/lesson-recurrence-plan.entity';
+import { LessonRecurrencePlan } from '../entities/lesson-recurrence-plan.entity';
 import {
   CreateLessonRecurrencePlanDto,
   UpdateLessonRecurrencePlanDto,
-} from '../../definitions/lesson-recurrence-plan.dto';
+} from '../definitions/lesson-recurrence-plan.dto';
 
 @Injectable()
 export class LessonRecurrencePlanService {
